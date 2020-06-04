@@ -23,10 +23,18 @@ steps:
   inputs:
     version: '3.0.x'
     packageType: runtime
-steps:
+
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
   inputs:
     version: 5.0.x
     performMultiLevelLookup: true
     includePreviewVersions: true # Required for preview versions
+    # do this before your build tasks
+
+- task: DotNetCoreCLI@2
+  displayName: 'Install dotnetsay'
+  inputs:
+    command: custom
+    custom: tool
+    arguments: 'install -g dotnetsay'
